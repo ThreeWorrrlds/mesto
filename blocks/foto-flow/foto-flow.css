@@ -1,0 +1,9 @@
+.foto-flow {
+  max-width: 880px;
+  padding: 0 200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px 17px;
+  margin: 0 auto;
+}

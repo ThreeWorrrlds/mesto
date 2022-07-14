@@ -4,3 +4,9 @@
   font-weight: 400;
   margin: 0;
 }
+
+@media screen and (max-width: 491px) {
+  .profile__description {
+    font-size: 14px;
+  }
+}

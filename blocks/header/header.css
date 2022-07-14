@@ -5,3 +5,15 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 981px) {
+  .header {
+    padding: 45px 150px 40px;
+  }
+}
+
+@media screen and (max-width: 882px) {
+  .header {
+    padding: 28px 0 42px;
+  }
+}

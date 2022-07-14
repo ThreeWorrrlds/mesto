@@ -10,3 +10,18 @@
   margin-top: 37px;
   border: 0;
 }
+
+@media screen and (max-width: 1040px) {
+  .profile__button-edit {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 491px) {
+  .profile__button-edit {
+    height: 18px;
+    width: 18px;
+    margin-top: 8px;
+
+  }
+}

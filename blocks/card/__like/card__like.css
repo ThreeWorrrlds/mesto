@@ -8,4 +8,15 @@
   height: 19px;
   width: 22px;
   border: 0;
+  transition: opacity 0.2s;
+}
+
+.card__like:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.card__like:focus {
+  background-image: url(../../../images/Like-active.svg);
+  opacity: 1;
 }

@@ -4,6 +4,7 @@
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   color: #FFFFFF;
   margin: 0 auto;
+  position: relative;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

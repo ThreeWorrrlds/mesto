@@ -22,27 +22,27 @@
   font-weight: 500;
 }
 
-input::-webkit-input-placeholder {
+.popup__input::-webkit-input-placeholder {
   color: rgb(180, 180, 180);
   font-weight: 500;
 }
 
-input:-moz-placeholder {
+.popup__input:-moz-placeholder {
   color: rgb(180, 180, 180);
   font-weight: 500;
 }
 
-input::-moz-placeholder {
+.popup__input::-moz-placeholder {
   color: rgb(180, 180, 180);
   font-weight: 500;
 }
 
-input:-ms-input-placeholder {
+.popup__input:-ms-input-placeholder {
   color: rgb(180, 180, 180);
   font-weight: 500;
 }
 
-input::-ms-input-placeholder {
+.popup__input::-ms-input-placeholder {
   color: rgb(180, 180, 180);
   font-weight: 500;
 }

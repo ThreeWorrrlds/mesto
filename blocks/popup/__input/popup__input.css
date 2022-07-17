@@ -2,6 +2,7 @@
   margin: 0 0 30px;
   padding: 0;
   border: 0;
+  outline: none;
   border-bottom: 1px solid rgb(0, 0, 0, .2);
   height: 26px;
   width: 358px;
@@ -14,6 +15,36 @@
 
 .popup__input:last-of-type {
   margin: 0 0 48px;
+}
+
+.popup__input::placeholder {
+  color: rgb(180, 180, 180);
+  font-weight: 500;
+}
+
+input::-webkit-input-placeholder {
+  color: rgb(180, 180, 180);
+  font-weight: 500;
+}
+
+input:-moz-placeholder {
+  color: rgb(180, 180, 180);
+  font-weight: 500;
+}
+
+input::-moz-placeholder {
+  color: rgb(180, 180, 180);
+  font-weight: 500;
+}
+
+input:-ms-input-placeholder {
+  color: rgb(180, 180, 180);
+  font-weight: 500;
+}
+
+input::-ms-input-placeholder {
+  color: rgb(180, 180, 180);
+  font-weight: 500;
 }
 
 @media screen and (max-width: 555px) {

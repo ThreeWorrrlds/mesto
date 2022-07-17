@@ -9,9 +9,16 @@ let jobInput = formElement.querySelector('.popup__input_type_job'); //строк
 let profileName = document.querySelector('.profile__name'); //строка имени на странице
 let profileDescription = document.querySelector('.profile__description'); //строка о работе на странице
 
-let buttonSave = formElement.querySelector('.popup__button-save');  //кнопка сохранить
 
 
+//let buttonSave = formElement.querySelector('.popup__button-save');  //кнопка сохранить
+
+//buttonSave.addEventListener('click', formSubmitHandler); // Закрытие поп-апа при нажатии "Сохранить"
+
+//function clickButtonSave() {          // устанавливает в профайл значения введенные в поля формы и закрывает поп-ап
+//  setProfileInformationValue();
+//  closePopap();
+//}
 
 function setPopupInputValue() {                           // автозаполняет поля формы
   nameInput.value = profileName.textContent.trim();
@@ -32,17 +39,14 @@ function setProfileInformationValue() {             //устанавливает
   profileDescription.textContent = jobInput.value;
 }
 
-function clickButtonSave() {          // устанавливает в профайл значения введенные в поля формы и закрывает поп-ап
-  setProfileInformationValue();
-  closePopap();
-}
 
 function formSubmitHandler(evt) {
-  clickButtonSave();
+  setProfileInformationValue();
+  closePopap();
   evt.preventDefault();
 }
 
-buttonSave.addEventListener('click', formSubmitHandler); // Закрытие поп-апа при нажатии "Сохранить"
+
 
 buttonEdit.addEventListener('click', openPopap);  // Открытие поп-апа
 

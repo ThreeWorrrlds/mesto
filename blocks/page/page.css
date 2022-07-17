@@ -6,6 +6,11 @@
   margin: 0 auto;
   position: relative;
 
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

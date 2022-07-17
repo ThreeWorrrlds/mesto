@@ -1,14 +1,15 @@
 .profile__button-add {
-  border: 1px solid #FFFFFF;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
   background-image: url(../../../images/Vector.svg);
-  background-color: black;
+  background-color: transparent;
   background-position: center;
-  background-size: center;
+  background-size: 22px 22px;
   background-repeat: no-repeat;
   box-sizing: border-box;
   max-width: 150px;
   max-height: 50px;
-  padding: 24px 74px;
+  padding: 23px 73px;
   margin-left: auto;
 }
 
@@ -21,7 +22,7 @@
 
 @media screen and (max-width: 491px) {
   .profile__button-add {
-    background-image: url(../../../images/Vector-smal.svg);
+    background-size: 16px 16px;
 
   }
 }

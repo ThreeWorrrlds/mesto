@@ -5,11 +5,12 @@
   line-height: 1.22;
   font-weight: 400;
   background-color: #000000;
+  border: none;
+  border-radius: 2px;
   color: #FFFFFF;
   min-width: 358px;
   min-height: 50px;
   transition: opacity 0.2s;
-  /* outline: 1px solid black; */
 }
 
 .popup__button-save:hover {

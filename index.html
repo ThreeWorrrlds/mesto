@@ -6,39 +6,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Document</title>
+  <title>Место</title>
 </head>
 
 <body class="page">
 
   <header class="header">
     <img src="./images/logo.svg" alt="Логотип 'Место'" class="header__logo">
-    <img src="./images/Line.png" alt="Нижняя линия" class="header__line">
   </header>
 
   <main class="content">
-    <article class="profile">
+    <section class="profile">
+
       <img src="./images/Avatar.png" alt="Фото пользователя" class="profile__avatar">
 
       <div class="profile__information">
         <div class="profile__align">
-          <h2 class="profile__name">Жак-Ив Кусто</h2>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" class="profile__button-edit button-style"></button>
         </div>
         <p class="profile__description">Исследователь океана</p>
       </div>
       <button type="button" class="profile__button-add button-style"></button>
-    </article>
+    </section>
 
     <section class="foto-flow" aria-label="Карточки мест">
-
-
       <article class="card">
         <!-- карточка №1 -->
+
         <img src="./images/1.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
           class="card__photo">
         <div class="card__description-group">
-          <p class="card__place-name">Карачаевск</p>
+          <h2 class="card__place-name">Карачаевск</h2>
           <button type="button" class="card__like">
             <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
           </button>
@@ -50,7 +49,7 @@
         <img src="./images/2.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
           class="card__photo">
         <div class="card__description-group">
-          <p class="card__place-name">Гора Эльбрус</p>
+          <h2 class="card__place-name">Гора Эльбрус</h2>
           <button type="button" class="card__like">
             <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
           </button>
@@ -62,7 +61,7 @@
         <img src="./images/3.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
           class="card__photo">
         <div class="card__description-group">
-          <p class="card__place-name">Домбай</p>
+          <h2 class="card__place-name">Домбай</h2>
           <button type="button" class="card__like">
             <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
           </button>
@@ -74,7 +73,7 @@
         <img src="./images/4.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
           class="card__photo">
         <div class="card__description-group">
-          <p class="card__place-name">Гора Эльбрус</p>
+          <h2 class="card__place-name">Гора Эльбрус</h2>
           <button type="button" class="card__like">
             <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
           </button>
@@ -86,7 +85,7 @@
         <img src="./images/5.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
           class="card__photo">
         <div class="card__description-group">
-          <p class="card__place-name">Домбай</p>
+          <h2 class="card__place-name">Домбай</h2>
           <button type="button" class="card__like">
             <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
           </button>
@@ -98,7 +97,7 @@
         <img src="./images/6.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
           class="card__photo">
         <div class="card__description-group">
-          <p class="card__place-name">Карачаево-Ч...</p>
+          <h2 class="card__place-name">Карачаево-Черкесская Республика</h2>
           <button type="button" class="card__like">
             <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
           </button>
@@ -108,26 +107,23 @@
 
     <div class="popup">
       <div class="popup__container">
-        <p class="popup__description">Редактировать профиль</p>
-        <form class="popup__form" autocomplete="on">
-          <input type="text" class="popup__input popup__input_type_name" name="input-name">
-          <input type="text" class="popup__input popup__input_type_job" name="input-job">
+        <h2 class="popup__description">Редактировать профиль</h2>
+        <form class="popup__form" autocomplete="on" name="profile-information">
+          <input type="text" class="popup__input popup__input_type_name" name="input-name" placeholder="Введите имя">
+          <input type="text" class="popup__input popup__input_type_job" name="input-job"
+            placeholder="Ваши увлечения, хобби, род деятельности">
           <button type="submit" class="popup__button-save">Сохранить</button>
         </form>
         <button type="button" class="popup__button-close button-style"></button>
       </div>
     </div>
-
-
-
   </main>
-
 
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
 
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

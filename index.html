@@ -46,10 +46,10 @@
 
     </section>
 
-    <div class="popup">
+    <div class="popup profile-popup">
       <div class="popup__container">
         <h2 class="popup__description">Редактировать профиль</h2>
-        <form class="popup__form" autocomplete="on" name="profile-information">
+        <form class="popup__form popup-profile-form" autocomplete="on" name="profile-information">
           <input type="text" class="popup__input popup__input_type_name" name="input-name" placeholder="Введите имя">
           <input type="text" class="popup__input popup__input_type_job" name="input-job"
             placeholder="Ваши увлечения, хобби, род деятельности">
@@ -62,7 +62,7 @@
     <div class="popup popup-edit-place-card">
       <div class="popup__container">
         <h2 class="popup__description">Новое место</h2>
-        <form class="popup__form" autocomplete="on" name="profile-information">
+        <form class="popup__form popup-card-form" autocomplete="off" name="card-information">
           <input type="text" class="popup__input popup__input_type_place-name" name="input-place-name"
             placeholder="Название">
           <input type="text" class="popup__input popup__input_type_place-link" name="input-place-link"
@@ -76,7 +76,8 @@
 
   <div class="popup popup-view-photo">
     <div class="popup__container-photo">
-      <img alt="фотография места" class="popup__photo">
+      <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="фотография места"
+        class="popup__photo">
       <p class="popup__photo-description"></p>
       <button type="button" class="popup__button-close button-style"></button>
     </div>

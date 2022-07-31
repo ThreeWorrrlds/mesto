@@ -41,7 +41,7 @@
 @import url(../blocks/popup/__input/_type/popup__input_type_job.css);
 @import url(../blocks/popup/__photo/popup__photo.css);
 @import url(../blocks/popup/__photo-description/popup__photo-description.css);
-@import url(../blocks/popup/__view-photo/popup-view-photo.css);
+@import url(../blocks/popup/popup-view-photo/popup-view-photo.css);
 @import url(../blocks/popup/__container-photo/popup__container-photo.css);
 
 @import url(../blocks/footer/footer.css);
@@ -49,7 +49,7 @@
 
 @import url(../blocks/popup/_opened/popup_opened.css);
 
-@import url(../blocks/popup/__edit-place-card/popup__edit-place-card.scc);
+@import url(../blocks/popup/popup-edit-place-card/popup__edit-place-card.scc);
 @import url(../blocks/popup/__input/_type/popup__input_type_place-name.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_place-link.css);
 

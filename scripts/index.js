@@ -10,10 +10,10 @@ const profileName = document.querySelector('.profile__name'); //строка и�
 const profileDescription = document.querySelector('.profile__description'); //строка о работе профиля на странице
 
 const buttonAddCardsPlace = document.querySelector('.profile__button-add'); //кнопка открытия поп-ап место
-const popupEditCardsPlace = document.querySelector('.popup__edit-place-card'); //попап добавления карточки место
+const popupEditCardsPlace = document.querySelector('.popup-edit-place-card'); //попап добавления карточки место
 const buttonSaveCardAdd = document.querySelector('.popup__button-save_card_add'); //кнопка сохранить поп-ап место
 
-const popupViewPhotoPlace = document.querySelector('.popup__view-photo'); //поп-ап просмотра фото
+const popupViewPhotoPlace = document.querySelector('.popup-view-photo'); //поп-ап просмотра фото
 const popupPhoto = document.querySelector('.popup__photo');
 const popupPhotoViewDescription = document.querySelector('.popup__photo-description');
 

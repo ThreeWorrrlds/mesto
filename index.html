@@ -31,78 +31,19 @@
     </section>
 
     <section class="foto-flow" aria-label="Карточки мест">
-      <article class="card">
-        <!-- карточка №1 -->
 
-        <img src="./images/3097ece1854f212f5a0cb0011ddec1c5.jpg"
-          alt="изображение заброшеной древней постройки, предположительно церкви или монастыря" class="card__photo">
-        <div class="card__description-group">
-          <h2 class="card__place-name">Швейцария</h2>
-          <button type="button" class="card__like">
-            <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
-          </button>
-        </div>
-      </article>
+      <template id="card">
+        <article class="card">
+          <!-- невидимая карточка тэмплэйт-->
+          <img alt="фотография места" class="card__photo">
+          <div class="card__description-group">
+            <h2 class="card__place-name"></h2>
+            <button type="button" class="card__like"></button>
+            <button type="button" class="card__trash button-style"></button>
+          </div>
+        </article>
+      </template>
 
-      <article class="card">
-        <!-- карточка №2 -->
-        <img src="./images/2.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
-          class="card__photo">
-        <div class="card__description-group">
-          <h2 class="card__place-name">Гора Эльбрус</h2>
-          <button type="button" class="card__like">
-            <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
-          </button>
-        </div>
-      </article>
-
-      <article class="card">
-        <!-- карточка №3 -->
-        <img src="./images/3.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
-          class="card__photo">
-        <div class="card__description-group">
-          <h2 class="card__place-name">Домбай</h2>
-          <button type="button" class="card__like">
-            <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
-          </button>
-        </div>
-      </article>
-
-      <article class="card">
-        <!-- карточка №4 -->
-        <img src="./images/4.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
-          class="card__photo">
-        <div class="card__description-group">
-          <h2 class="card__place-name">Гора Эльбрус</h2>
-          <button type="button" class="card__like">
-            <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
-          </button>
-        </div>
-      </article>
-
-      <article class="card">
-        <!-- карточка №5 -->
-        <img src="./images/5.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
-          class="card__photo">
-        <div class="card__description-group">
-          <h2 class="card__place-name">Домбай</h2>
-          <button type="button" class="card__like">
-            <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
-          </button>
-        </div>
-      </article>
-
-      <article class="card">
-        <!-- карточка №6 -->
-        <img src="./images/6.png" alt="изображение заброшеной древней постройки, предположительно церкви или монастыря"
-          class="card__photo">
-        <div class="card__description-group">
-          <h2 class="card__place-name">Карачаево-Черкесская Республика</h2>
-          <button type="button" class="card__like">
-            <!-- <img src="./images/Like.png" alt="иконка лайка" class="card__like-img"> -->
-          </button>
-        </div>
-      </article>
     </section>
 
     <div class="popup">
@@ -117,7 +58,29 @@
         <button type="button" class="popup__button-close button-style"></button>
       </div>
     </div>
+
+    <div class="popup popup__edit-place-card">
+      <div class="popup__container">
+        <h2 class="popup__description">Новое место</h2>
+        <form class="popup__form" autocomplete="on" name="profile-information">
+          <input type="text" class="popup__input popup__input_type_place-name" name="input-place-name"
+            placeholder="Название">
+          <input type="text" class="popup__input popup__input_type_place-link" name="input-place-link"
+            placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__button-save popup__button-save_card_add">Сохранить</button>
+        </form>
+        <button type="button" class="popup__button-close button-style"></button>
+      </div>
+    </div>
   </main>
+
+  <div class="popup popup__view-photo">
+    <div class="popup__container-photo">
+      <img alt="фотография места" class="popup__photo">
+      <p class="popup__photo-description">ЧЕЛЯБИНСКАЯ ОБЛАСТЬ</p>
+      <button type="button" class="popup__button-close button-style"></button>
+    </div>
+  </div>
 
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>

@@ -5,7 +5,7 @@
   background-color: #FFFFFF;
   opacity: 1;
   border-radius: 10px;
-
+  position: relative;
 }
 
 /* .card::before {

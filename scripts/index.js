@@ -1,6 +1,6 @@
 const buttonEdit = document.querySelector('.profile__button-edit');
 const popupProfile = document.querySelector('.profile-popup');
-const buttonClose = document.querySelectorAll('.popup__button-close');
+const closeButtons = document.querySelectorAll('.popup__button-close');
 
 const formProfile = document.querySelector('.popup-profile-form');  //форма отправки
 const nameInput = formProfile.querySelector('.popup__input_type_name');  //строка имени в поп-апе профиля
@@ -67,13 +67,7 @@ buttonEdit.addEventListener('click', function () {
   openPopup(popupProfile);
 });
 
-function setPopupCardInputValue() {
-  placeNameInput.value = "";
-  placeLinkInput.value = "";
-}
-
 buttonAddCard.addEventListener('click', function () {
-  setPopupCardInputValue();
   openPopup(popupAddCard);
 });
 /*----------ОТКРЫТИЕ ПОПАПОВ--------------*/
@@ -99,6 +93,7 @@ function createCard(name, linkPhoto) {
   cardPhoto.addEventListener('click', function () {
     openPopup(popupViewPhotoPlace);
     popupPhoto.setAttribute('src', cardPhoto.getAttribute('src'));
+    popupPhoto.setAttribute('alt', 'изображение ' + name);
     popupPhotoViewDescription.textContent = name;
   });
   return cardElement;
@@ -135,6 +130,7 @@ formProfile.addEventListener('submit', handleProfileFormSubmit);
 function handleCardsFormSubmit(evt) {
   addCard(placeNameInput.value, placeLinkInput.value);
   closePopup(popupAddCard);
+  evt.target.reset();
   evt.preventDefault();
 }
 formCard.addEventListener('submit', handleCardsFormSubmit);
@@ -146,7 +142,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-buttonClose.forEach(function (button) {
+closeButtons.forEach(function (button) {
   const popup = button.closest('.popup');
   button.addEventListener('click', function () {
     closePopup(popup)
@@ -154,65 +150,3 @@ buttonClose.forEach(function (button) {
 });
 /*----------ЗАКРЫТИЕ ПОП-АПОВ-----------*/
 
-
-
-
-
-
-
-
-/* function closePopup(evt) {          //закрывает попап по таргету на крестик или "сохранить"
-  const closeBtn = evt.target;
-  if (closeBtn.classList.contains('popup__button-close')) {
-    closeBtn.closest('.popup').classList.remove('popup_opened');
-  } if (closeBtn.classList.contains('popup__button-save')) {
-    closeBtn.closest('.popup').classList.remove('popup_opened');
-  }
-}
-page.addEventListener('click', closePopup); //закрыть попап по таргету */
-
-/* 
-function likeToggle(evt) {          //тоглит лайк по таргету
-  const likeBtn = evt.target;
-  if (likeBtn.classList.contains('card__like')) {
-    likeBtn.classList.toggle('card__like_active');
-  }
-}
-fotoFlow.addEventListener('click', likeToggle); //тоглит лайк */
-
-/* function addCard(name, linkPhoto) {                    //функция создает карточку места из темплейт элемента
-  fotoFlow.prepend(cardElement);                                             //разместили элемент в начале
-}
- */
-
-/* buttonSaveCardAdd.addEventListener('click', function (evt) {        //слушатель кнопки сохранить
-  const placeNameInput = document.querySelector('.popup__input_type_place-name');
-  const placeLinkInput = document.querySelector('.popup__input_type_place-link');
-  addCard(placeNameInput.value, placeLinkInput.value);        //функция с аргументами значений инпута нэйм и инпута ссылки фото
-  closePopup(evt);        //закрывает поп-ап
-  evt.preventDefault();    //останавливает дальнейшее событие
-}); */
-
-/* cardPhoto.addEventListener('click', function () {  //ВОТ ЭТА ФУНКЦИЯ ДОЛЖНА БЫТЬ!!!!!
-  console.log('попал в card_photo');
-  openPopup(popupViewPhotoPlace);
-}); */
-
-/* function findTarget(evt) {                //поиск таргета
-  const viewBtn = evt.target;
-  if (viewBtn.classList.contains('card__photo')) {
-    console.log('попал в card_photo');
-  }
-}
-page.addEventListener('click', findTarget); */
-/* 
-function popupOpenViewPhotoPlace(evt) {             //функц. открытия поп-апа с картинкой
-  const ViewBtn = evt.target;
-  if (ViewBtn.classList.contains('card__photo')) {    //если тык на картинку
-    popupViewPhotoPlace.classList.add('popup_opened'); // то открывается попап
-    popupPhoto.setAttribute('src', ViewBtn.getAttribute('src')); //добавляется атрибут полученный от таргета
-    popupPhotoViewDescription.textContent = ViewBtn.nextElementSibling.querySelector('.card__place-name').textContent; //здесь подтягивается текст от таргета
-    console.log(ViewBtn.parentNode.querySelector('.card__place-name').textContent);
-  }
-} 
-page.addEventListener('click', findTarget); */

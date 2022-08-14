@@ -25,6 +25,8 @@ const page = document.querySelector('.page'); //вся страница
 
 const fotoFlow = document.querySelector('.foto-flow'); //секция карточек места
 
+const formPopup = document.querySelectorAll('.popup__form');
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -52,6 +54,7 @@ const initialCards = [
   }
 ];
 
+
 /*----------ОТКРЫТИЕ ПОПАПОВ--------------*/
 function setPopupProfileInputValue() {
   nameInput.value = profileName.textContent.trim();
@@ -65,10 +68,12 @@ function openPopup(popup) {
 buttonEdit.addEventListener('click', function () {
   setPopupProfileInputValue();
   openPopup(popupProfile);
+  clearValidation(configFormOne);
 });
 
 buttonAddCard.addEventListener('click', function () {
   openPopup(popupAddCard);
+  //clearValidation(configFormTwo);
 });
 /*----------ОТКРЫТИЕ ПОПАПОВ--------------*/
 
@@ -148,5 +153,29 @@ closeButtons.forEach(function (button) {
     closePopup(popup)
   });
 });
+
+function closePopupClickOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    console.log('eto overlay');
+    closePopup(evt.target);
+  }
+}
+page.addEventListener('mousedown', closePopupClickOverlay);
+
+function closePopupKeyboard() {
+  formPopup.forEach((form) => {
+    form.addEventListener('keyup', function (evt) {
+      if (evt.key === 'Escape') {
+        closePopup(form.closest('.popup'));
+      }
+    });
+  });
+}
+closePopupKeyboard();
+
 /*----------ЗАКРЫТИЕ ПОП-АПОВ-----------*/
+
+
+
+
 

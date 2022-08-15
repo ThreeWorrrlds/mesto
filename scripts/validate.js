@@ -1,17 +1,7 @@
 /*-----ВАЛИДАЦИЯ ИНПУТОВ------------*/
 
-const configFormOne = {
-  formSelector: '.popup-profile-form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button-save',
-
-  inactiveButtonClass: 'popup__button-save_inactive',
-  inputErrorClass: 'popup__input_style_error',
-  errorClass: 'popup__text-error_active'
-}
-
-const configFormTwo = {
-  formSelector: '.popup-card-form',
+const configForm = {
+  formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button-save',
 
@@ -76,7 +66,7 @@ const enableValidation = (config) => {
   const forms = document.querySelectorAll(config.formSelector);
   [...forms].forEach(form => {
     setEventListener(form, config);
-  })
+  });
 }
 
 function clearValidation(config) {
@@ -87,5 +77,4 @@ function clearValidation(config) {
   });
 }
 
-enableValidation(configFormOne);
-enableValidation(configFormTwo);
+enableValidation(configForm);

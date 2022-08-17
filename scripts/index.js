@@ -131,13 +131,17 @@ function handleProfileFormSubmit(evt) { //обработчик сабмита
 }
 formProfile.addEventListener('submit', handleProfileFormSubmit);
 
+function deactivateButton(button, config) {
+  button.classList.add(config.inactiveButtonClass);
+  button.disabled = 'disabled';
+}
 
 function handleCardsFormSubmit(evt) {
   addCard(placeNameInput.value, placeLinkInput.value);
   closePopup(popupAddCard);
   evt.target.reset();
   evt.preventDefault();
-  enableValidation(configForm);
+  deactivateButton(buttonSaveCardAdd, configForm);
 }
 formCard.addEventListener('submit', handleCardsFormSubmit);
 /*----------САБМИТ ОБРАБОТЧИКИ---------*/

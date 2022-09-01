@@ -174,6 +174,12 @@ function closeByEscape(evt) {
 }
 /*----------ЗАКРЫТИЕ ПОП-АПОВ-----------*/
 
+class Card {
+  constructor() {
+
+  }
+
+}
 
 
 

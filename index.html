@@ -32,7 +32,7 @@
 
     <section class="foto-flow" aria-label="Карточки мест">
 
-      <template id="card">
+      <template id="card" class="template-card">
         <article class="card">
           <!-- невидимая карточка тэмплэйт-->
           <img alt="фотография места" class="card__photo">
@@ -94,8 +94,9 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script src="./scripts/FormValidator.js" type="module"></script>
+  <script src="./scripts/Card.js" type="module"></script>
+  <script src="./scripts/index.js" type="module" defer></script>
 </body>
 
 </html>

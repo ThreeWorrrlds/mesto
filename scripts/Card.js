@@ -1,11 +1,9 @@
-/* !!!!!!!!!!!КЛАСС КАРТОЧЕК!!!!!!!!! */
-import { initialCards } from "./index.js";
-import { openPopup } from "./index.js";
-import { popupViewPhotoPlace } from "./index.js";
-import { popupPhoto } from "./index.js";
-import { popupPhotoViewDescription } from "./index.js";
+import { openPopup } from './utils/utils.js';
+import { popupViewPhotoPlace } from "./utils/constants.js";
+import { popupPhoto } from "./utils/constants.js";
+import { popupPhotoViewDescription } from "./utils/constants.js";
 
-class Card {
+export class Card {
   constructor(name, link, templateSelector) {
     this._name = name;
     this._link = link;
@@ -14,8 +12,6 @@ class Card {
 
   _getTemplate() {
     const cardElement = document.querySelector(this._templateSelector).content.querySelector('.card').cloneNode(true);
-    //вытащить из темплейт кнопки лайк и треш
-
     return cardElement;
   }
 
@@ -24,7 +20,7 @@ class Card {
     this._setEventListeners();
     this._element.querySelector('.card__photo').setAttribute('src', this._link);
     this._element.querySelector('.card__place-name').textContent = this._name;
-
+    this._element.querySelector('.card__photo').setAttribute('alt', `изображение ${this._name}`);
     return this._element;
   }
 
@@ -32,7 +28,6 @@ class Card {
     const cardBtnLike = this._element.querySelector('.card__like');
     const cardBtnTrash = this._element.querySelector('.card__trash');
     const cardPhoto = this._element.querySelector('.card__photo');
-
     cardPhoto.addEventListener('click', () => {
       openPopup(popupViewPhotoPlace);
       popupPhoto.setAttribute('src', cardPhoto.getAttribute('src'));
@@ -48,20 +43,4 @@ class Card {
       evt.target.closest('.card').remove();
     });
   }
-}  //закрывает класс
-
-function addCard(name, link, templateSelector) {
-  const card = new Card(name, link, templateSelector);
-  const cardElement = card.generateCard();
-  document.querySelector('.foto-flow').prepend(cardElement);
 }
-
-initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link, '#card');
-  const cardElement = card.generateCard();
-
-  document.querySelector('.foto-flow').prepend(cardElement);
-});
-
-
-export { addCard };

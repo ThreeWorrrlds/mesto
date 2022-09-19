@@ -1,6 +1,7 @@
 const popupViewPhotoPlace = document.querySelector('.popup-view-photo'); //поп-ап просмотра фото
 const popupPhoto = document.querySelector('.popup__photo');
 const popupPhotoViewDescription = document.querySelector('.popup__photo-description');
+const fotoFlow = document.querySelector('.foto-flow');
 
 const initialCards = [
   {
@@ -44,3 +45,4 @@ export { popupPhoto }; // to Card.js
 export { popupPhotoViewDescription }; // to Card.js
 export { initialCards }; //to index.js
 export { configForm }; //to FormValidator.js
+export { fotoFlow }; // to index.js

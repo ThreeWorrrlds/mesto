@@ -1,13 +1,9 @@
-import { openPopup } from './utils/utils.js';
-import { popupViewPhotoPlace } from "./utils/constants.js";
-import { popupPhoto } from "./utils/constants.js";
-import { popupPhotoViewDescription } from "./utils/constants.js";
-
 export class Card {
-  constructor(name, link, templateSelector) {
+  constructor({ name, link }, { handleCardClick }, templateSelector) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -17,10 +13,10 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
     this._element.querySelector('.card__photo').setAttribute('src', this._link);
     this._element.querySelector('.card__place-name').textContent = this._name;
     this._element.querySelector('.card__photo').setAttribute('alt', `изображение ${this._name}`);
+    this._setEventListeners();
     return this._element;
   }
 
@@ -28,12 +24,6 @@ export class Card {
     const cardBtnLike = this._element.querySelector('.card__like');
     const cardBtnTrash = this._element.querySelector('.card__trash');
     const cardPhoto = this._element.querySelector('.card__photo');
-    cardPhoto.addEventListener('click', () => {
-      openPopup(popupViewPhotoPlace);
-      popupPhoto.setAttribute('src', cardPhoto.getAttribute('src'));
-      popupPhoto.setAttribute('alt', `'изображение ${this._name}`);
-      popupPhotoViewDescription.textContent = this._name;
-    });
 
     cardBtnLike.addEventListener('click', function () {
       cardBtnLike.classList.toggle('card__like_active');
@@ -42,5 +32,16 @@ export class Card {
     cardBtnTrash.addEventListener('click', function (evt) {
       evt.target.closest('.card').remove();
     });
+
+    cardPhoto.addEventListener('click', () => {
+      this._handleCardClick(this.getObjectData());
+    });
+  }
+
+  getObjectData() {
+    const objectData = {};
+    objectData.img = this._link;
+    objectData.name = this._name;
+    return objectData;
   }
 }

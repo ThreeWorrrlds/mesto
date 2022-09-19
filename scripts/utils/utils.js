@@ -5,7 +5,6 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
 }
 
 function closeByEscape(evt) {
@@ -15,6 +14,3 @@ function closeByEscape(evt) {
   }
 }
 
-export { openPopup } //to 'index.js' and 'Card.js'
-export { closePopup } //to 'index.js' and 'Card.js'
-export { closeByEscape } //to 'index.js' and 'Card.js'

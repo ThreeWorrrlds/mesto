@@ -12,13 +12,14 @@
 <body class="page">
 
   <header class="header">
-    <img src="./images/logo.svg" alt="Логотип 'Место'" class="header__logo">
+
+    <img src="<%=require('./images/logo.svg')%>" alt="Логотип 'Место'" class="header__logo">
   </header>
 
   <main class="content">
     <section class="profile">
 
-      <img src="./images/Avatar.png" alt="Фото пользователя" class="profile__avatar">
+      <img src="<%=require('./images/Avatar.png')%>" alt="Фото пользователя" class="profile__avatar">
 
       <div class="profile__information">
         <div class="profile__align">
@@ -94,10 +95,6 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <script src="./scripts/utils/constants.js" type="module"></script>
-  <script src="./scripts/utils/utils.js" type="module"></script>
-  <script src="./scripts/Card.js" type="module"></script>
-  <script src="./scripts/FormValidator.js" type="module"></script>
   <script src="./scripts/index.js" type="module" defer></script>
 </body>
 

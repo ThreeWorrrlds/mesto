@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards } from './utils/constants.js';
@@ -39,7 +40,6 @@ buttonAddCard.addEventListener('click', function () {
   popupAddCards.open();
 });
 
-/*-----ПРОФИЛЬ-----*/
 const popupProfileForm = new PopupWithForm('.profile-popup', '.popup-profile-form', handleFormProfileSubmit);
 popupProfileForm.setEventListeners();
 
@@ -57,7 +57,6 @@ function handleFormProfileSubmit(formUserData) {
   //profileName.textContent = formUserData.name;
   //profileDescription.textContent = formUserData.job;
 }
-/*-----ПРОФИЛЬ-----*/
 
 function handleFormCardSubmit(formDataObject) {
   const newCard = new Card(formDataObject, {
@@ -66,7 +65,6 @@ function handleFormCardSubmit(formDataObject) {
   defaultCards.addItem(newCard);
 }
 
-/*-----ВАЛИДАЦИЯ ФОРМ-------*/
 const formProfileValidation = new FormValidator(configForm, formProfile);
 formProfileValidation.enableValidation();
 

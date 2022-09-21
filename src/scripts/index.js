@@ -1,30 +1,34 @@
 import '../pages/index.css';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import { initialCards } from './utils/constants.js';
-import { configForm } from './utils/constants.js';
 import { Section } from './Section.js';
+import { UserInfo } from './UserInfo.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { PopupWithForm } from './PopupWithForm.js';
-import { UserInfo } from './UserInfo.js';
+import {
+  initialCards,
+  configForm,
+  buttonEdit,
+  formProfile,
+  nameInput,
+  jobInput,
+  formCard,
+  buttonAddCard
+} from './utils/constants.js';
 
-const buttonEdit = document.querySelector('.profile__button-edit');
-const formProfile = document.querySelector('.popup-profile-form');
-const nameInput = formProfile.querySelector('.popup__input_type_name');  //строка имени в поп-апе профиля
-const jobInput = formProfile.querySelector('.popup__input_type_job'); //строка о работе в поп-апе профиля
-const formCard = document.querySelector('.popup-card-form');
-const profileName = document.querySelector('.profile__name'); //строка имени профиля на странице 
-const profileDescription = document.querySelector('.profile__description'); //строка о работе профиля на странице
-const buttonAddCard = document.querySelector('.profile__button-add'); //кнопка открытия поп-ап место
+function createCard(item, handleCardClick, templateSelector) {
+  const card = new Card({ name: item.name, link: item.link }, handleCardClick, templateSelector);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 const defaultCards = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, {
+    const newCards = createCard(item, {
       handleCardClick: ({ img, name }) => { popupWithImage.open({ img, name }); }
     }, '#card');
-    const cardElement = card.generateCard();
-    defaultCards.addItem(cardElement);
+    defaultCards.addItem(newCards);
   },
 },
   '.foto-flow');
@@ -38,6 +42,7 @@ popupAddCards.setEventListeners();
 
 buttonAddCard.addEventListener('click', function () {
   popupAddCards.open();
+  popupAddCards.clearInputs();
 });
 
 const popupProfileForm = new PopupWithForm('.profile-popup', '.popup-profile-form', handleFormProfileSubmit);
@@ -54,14 +59,12 @@ buttonEdit.addEventListener('click', function () {
 
 function handleFormProfileSubmit(formUserData) {
   userInfo.setUserInfo(formUserData);
-  //profileName.textContent = formUserData.name;
-  //profileDescription.textContent = formUserData.job;
 }
 
 function handleFormCardSubmit(formDataObject) {
-  const newCard = new Card(formDataObject, {
+  const newCard = createCard({ name: formDataObject.name, link: formDataObject.link }, {
     handleCardClick: ({ img, name }) => { popupWithImage.open({ img, name }); }
-  }, '#card').generateCard();
+  }, '#card');
   defaultCards.addItem(newCard);
 }
 

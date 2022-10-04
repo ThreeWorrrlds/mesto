@@ -17,15 +17,15 @@
 
   <main class="content">
     <section class="profile">
-
-      <img src="<%=require('./images/Avatar.png')%>" alt="Фото пользователя" class="profile__avatar">
-
+      <a href="#" class="profile__avatar-edit">
+        <img src="<%=require('./images/Avatar.png')%>" alt="Фото пользователя" class="profile__avatar">
+      </a>
       <div class="profile__information">
         <div class="profile__align">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">...</h1>
           <button type="button" class="profile__button-edit button-style"></button>
         </div>
-        <p class="profile__description">Исследователь океана</p>
+        <p class="profile__description">...</p>
       </div>
       <button type="button" class="profile__button-add button-style"></button>
     </section>
@@ -38,7 +38,10 @@
           <img alt="фотография места" class="card__photo">
           <div class="card__description-group">
             <h2 class="card__place-name"></h2>
-            <button type="button" class="card__like"></button>
+            <div class="card__likes">
+              <button type="button" class="card__like"></button>
+              <span class="card__likescounter">0</span>
+            </div>
             <button type="button" class="card__trash button-style"></button>
           </div>
         </article>
@@ -57,6 +60,20 @@
             placeholder="Ваши увлечения, хобби, род деятельности" minlength="2" maxlength="200" required>
           <span class="popup__text-error profile-description-error"></span>
           <button type="submit" class="popup__button-save">Сохранить</button>
+        </form>
+        <button type="button" class="popup__button-close button-style"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-change-avatar">
+      <div class="popup__container">
+        <h2 class="popup__description">Обновить аватар</h2>
+        <form class="popup__form popup-avatar-form" autocomplete="off" name="card-information" novalidate>
+
+          <input id="avatar-link" type="url" class="popup__input popup__input_type_avatar-link" name="link"
+            placeholder="Ссылка на картинку" required>
+          <span class="popup__text-error avatar-link-error"></span>
+          <button type="submit" class="popup__button-save popup__button-save_avatar_add">Сохранить</button>
         </form>
         <button type="button" class="popup__button-close button-style"></button>
       </div>
@@ -86,6 +103,15 @@
       <p class="popup__photo-description"></p>
       <button type="button" class="popup__button-close button-style"></button>
     </div>
+  </div>
+
+  <div class="popup popup-allow-delete">
+    <!-- попап удаления карточки -->
+    <form class="popup__container">
+      <h2 class="popup__description description-allow-delete">Вы уверены?</h2>
+      <button type="submit" class="popup__button-save popup__button-save_card_delete">Да</button>
+      <button type="button" class="popup__button-close button-style"></button>
+    </form>
   </div>
 
   <footer class="footer">

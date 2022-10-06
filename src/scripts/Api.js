@@ -1,12 +1,15 @@
 import {
-  avatarInput,
-  placeInput,
-  imgInput,
-  nameInput,
-  jobInput
+  avatarInput
 } from './utils/constants.js';
 
 export class Api {
+  #onResponce(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject("Ошибка", `${res}`);
+  }
+
   constructor(config) {
     this._urlCards = config.urlCards;
     this._urlAvatar = config.urlAvatar;
@@ -19,37 +22,27 @@ export class Api {
       headers: this._headers
     })
       .then((res) => {
-        return res.json();
+        return this.#onResponce(res);
       })
   }
 
   deleteCard(cardId) {
-    fetch(`${this._urlCards}/${cardId}`, {
+    return fetch(`${this._urlCards}/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     })
       .then((res) => {
-        return res.json();
+        return this.#onResponce(res);
       })
   }
 
-  setLike(cardId) {
-    fetch(`${this._urlCards}/${cardId}/likes`, {
-      method: 'PUT',
+  changeLike(cardId, isLike) {
+    return fetch(`${this._urlCards}/${cardId}/likes`, {
+      method: isLike ? 'DELETE' : 'PUT',
       headers: this._headers
     })
       .then((res) => {
-        return res.json();
-      })
-  }
-
-  deleteLike(cardId) {
-    fetch(`${this._urlCards}/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-    })
-      .then((res) => {
-        return res.json();
+        return this.#onResponce(res);
       })
   }
 
@@ -62,42 +55,43 @@ export class Api {
       })
     })
       .then((res) => {
-        return res.json();
+        return this.#onResponce(res);
       })
   }
 
-  createUserCard() {
+  createUserCard(data) {
     return fetch(this._urlCards, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: placeInput.value,
-        link: imgInput.value
+        name: data.name,
+        link: data.link
       })
     })
       .then((res) => {
-        return res.json();
+        return this.#onResponce(res);
       })
   }
 
   getUserInfoFromServer() {
     return fetch(this._urlUser, { headers: this._headers })
       .then((res) => {
-        return res.json();
+        return this.#onResponce(res);
       })
+
   }
 
-  sendUserInfoToServer() {
+  sendUserInfoToServer(data) {
     return fetch(this._urlUser, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: nameInput.value,
-        about: jobInput.value
+        name: data.name,
+        about: data.job
       })
     })
       .then((res) => {
-        return res.json();
+        return this.#onResponce(res);
       })
   }
 

@@ -1,13 +1,17 @@
 export class Card {
-  constructor(data, { handleCardClick }, templateSelector) {
+  constructor(data, { handleCardClick, handleCardDelete, handleLikeClick }, templateSelector) {
     this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes.length;
+    this._likesArr = data.likes;
     this._userId = data.owner._id;
     this._cardId = data._id;
+    this._myId = '4a161389e69e9824646dd7f1';
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
+    this._handleLikeClick = handleLikeClick;
     this._element = this._getTemplate();
     this._photo = this._element.querySelector('.card__photo');
     this._likesCounter = this._element.querySelector('.card__likescounter');
@@ -28,42 +32,46 @@ export class Card {
     if (this._userId !== "4a161389e69e9824646dd7f1") {
       this._cardBtnTrash.remove();
     }
+    this._setEventListeners();
     return this._element;
   }
 
-  _setEventListeners(popup, setLike, deleteLike) {
-    const cardBtnLike = this._element.querySelector('.card__like');
+  _setEventListeners() {
     const cardPhoto = this._element.querySelector('.card__photo');
 
-    cardBtnLike.addEventListener('click', () => {
-      cardBtnLike.classList.toggle('card__like_active');
-      console.log('лайк');
-      setLike(this._cardId);
-
-      const obj = [];
-      for (let i = 0; i < this._data.likes.length; i++) {     //собирает массив из айди лайков разных пользователей
-        console.log(i);
-        obj[i] = this._data.likes[i]._id;
-      }
-      console.log(obj);
-
-      const isOwn = obj.some(item => {                  //проверяет массив айди лайков на наличие моего лайка
-        return item === '4a161389e69e9824646dd7f1';
-      })
-      console.log(isOwn);
-
-      if (isOwn) {                                  //если есть мой лайк - удаляет его
-        deleteLike(this._cardId)
-      }
-    });
-
     this._cardBtnTrash.addEventListener('click', () => {
-      popup();
+      this._handleCardDelete(this);
     });
+
+    this._cardBtnLike.addEventListener('click', () => {
+      this._handleLikeClick(this);
+    })
 
     cardPhoto.addEventListener('click', () => {
       this._handleCardClick(this.getObjectData());
     });
+  }
+
+  isLiked() {
+    return Boolean(this._likesArr.find((like) => { return like._id === this._myId }));
+  }
+
+  changeLikeState(data) {
+    this._likesArr = data.likes;
+    this._likesCounter.textContent = data.likes.length;
+    if (this.isLiked()) {
+      this.setLike();
+    } else {
+      this.unsetLike();
+    }
+  }
+
+  setLike() {
+    this._cardBtnLike.classList.add('card__like_active');
+  }
+
+  unsetLike() {
+    this._cardBtnLike.classList.remove('card__like_active');
   }
 
   removeElement() {
@@ -71,15 +79,14 @@ export class Card {
   }
 
   getIdCard() {
-    if (this._userId === "4a161389e69e9824646dd7f1") {
-      return this._cardId;
-    }
+    return this._cardId;
   }
 
   getObjectData() {
     const objectData = {};
     objectData.img = this._link;
     objectData.name = this._name;
+    objectData._id = this._cardId;
     return objectData;
   }
 }

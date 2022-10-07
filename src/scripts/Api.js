@@ -1,7 +1,3 @@
-import {
-  avatarInput
-} from './utils/constants.js';
-
 export class Api {
   #onResponce(res) {
     if (res.ok) {
@@ -46,12 +42,12 @@ export class Api {
       })
   }
 
-  changeAvatar() {
+  changeAvatar(data) {
     return fetch(this._urlAvatar, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: avatarInput.value
+        avatar: data.link
       })
     })
       .then((res) => {

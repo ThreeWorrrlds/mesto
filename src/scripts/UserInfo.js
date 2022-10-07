@@ -18,10 +18,6 @@ export class UserInfo {
     this._profileDescription.textContent = res.about;
     this._avatar.src = res.avatar;
   }
-
-  /*  setAvatar(data) {
-     this._avatar.src = data.avatar;
-   } */
 }
 
 

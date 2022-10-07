@@ -15,11 +15,9 @@ export class PopupAllowDelete extends Popup {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      //cardDelete(cardId);
-      this._submitHandler();    // внутри этой функции будет определяться айдишник карточки
-      this.close();
+      this._submitHandler();
+      //this.close();
     });
-
   }
 
 }

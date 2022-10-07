@@ -1,4 +1,3 @@
-import { Card } from "./Card.js";
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
@@ -15,6 +14,7 @@ export class PopupWithForm extends Popup {
     this._inputElements.forEach((input) => {
       formDataObject[input.name] = input.value;
     });
+    formDataObject.btnText = this._btnSubmit.textContent;
     return formDataObject;
   }
 
@@ -22,7 +22,6 @@ export class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitHandler(this._getInputValues());
-      this.close();
     });
     super.setEventListeners();
   }
@@ -40,20 +39,7 @@ export class PopupWithForm extends Popup {
     this._btnSubmit.textContent = "Сохранение...";
   }
 
-  returnTextValueBtn(popup) {
-    switch (popup) {
-      case 'avatar':
-        this._btnSubmit.textContent = "Сохранить";
-        break;
-      case 'profile':
-        this._btnSubmit.textContent = "Сохранить";
-        break;
-      case 'card':
-        this._btnSubmit.textContent = "Создать";
-        break;
-      default:
-        console.log("Нет таких значений");
-    }
+  returnTextValueBtn(data) {
+    this._btnSubmit.textContent = data.btnText;
   }
-
 }

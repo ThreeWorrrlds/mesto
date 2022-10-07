@@ -17,7 +17,8 @@ import {
   buttonAddCard,
   formAvatar,
   buttonAvatar,
-  configApi
+  configApi,
+  myId
 } from './utils/constants.js';
 
 /*    создание и удаление карточек    */
@@ -29,18 +30,15 @@ function createCards(data) {
     handleCardDelete: (instance) => {
       popupAllowDelete.setSubmitAction(() => {
         api.deleteCard(instance.getIdCard())
-          .then(() => { instance.removeElement() })
+          .then(() => { instance.removeElement(), popupAllowDelete.close() })
       })
       popupAllowDelete.open();
     },
     handleLikeClick: (instance) => {
-      api.changeLike(instance.getIdCard(), instance.isLiked(), console.log(instance.isLiked()))
-        .then((res) => { instance.changeLikeState(res); console.log(res) })
+      api.changeLike(instance.getIdCard(), instance.isLiked())
+        .then((res) => { instance.changeLikeState(res); })
     }
-  }, '#card');
-
-  card._setEventListeners(popupDeleteOpen, setLike, deleteLike);
-  card.changeLikeState(data)
+  }, '#card', myId);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -54,36 +52,16 @@ const defaultCards = new Section(
   },
   '.foto-flow');
 
-const api = new Api(configApi);  //АПИ №1 рендеринг всех карточек на странице
-api.getAllCards()
-  .then((cardsData) => {
-    console.log(cardsData)
-    defaultCards.renderItems(cardsData);
-  })
-  .catch((err) => {
-    console.log('Что-то не так', err);
-  })
-
-/*       лайки          */
-function isLiked(instance) {
-  return instance.isLiked();
-}
-
-function setLike(cardId) {                //АПИ №3 добавление лайка
-  api.setLike(cardId);
-}
-function deleteLike(cardId) {                 //АПИ №4 удаление лайка
-  api.deleteLike(cardId);
-}
-
-/*            профиль          */
+const api = new Api(configApi);
 const userInfo = new UserInfo({ profileName: '.profile__name', profileDescription: '.profile__description', avatarElement: '.profile__avatar' });
-api.getUserInfoFromServer()
-  .then((res) => {
-    userInfo.setUserInfo(res);
+
+Promise.all([api.getUserInfoFromServer(), api.getAllCards()])
+  .then(([dataUser, dataCards]) => {
+    userInfo.setUserInfo(dataUser);
+    defaultCards.renderItems(dataCards);
   })
   .catch((err) => {
-    console.log(`Ошибка: ${err}`);
+    console.log('Данные не получены', err);
   })
 
 /*           Поп-апы          */
@@ -101,11 +79,6 @@ popupProfileForm.setEventListeners();
 
 const popupAvatarForm = new PopupWithForm('.popup-change-avatar', '.popup-avatar-form', handleFormAvatarSubmit);
 popupAvatarForm.setEventListeners();
-
-/*         колбэки методов         */
-function popupDeleteOpen() {
-  popupAllowDelete.open();
-}
 
 /*           Слушатели кнопок               */
 buttonAvatar.addEventListener('click', function () {
@@ -128,39 +101,49 @@ buttonEdit.addEventListener('click', function () {
 });
 
 /*           Сабмит обработчики             */
-function handleFormAvatarSubmit() {                     //АПИ №5 смены аватара
+function handleFormAvatarSubmit(dataObj) {
   popupAvatarForm.setLoader();
-  api.changeAvatar()
+  api.changeAvatar(dataObj)
     .then((res) => {
       userInfo.setUserInfo(res);
+      popupAvatarForm.close();
+    })
+    .catch((err) => {
+      console.log('Ошибка', err);
     })
     .finally(() => {
-      popupAvatarForm.returnTextValueBtn('avatar');
+      popupAvatarForm.returnTextValueBtn(dataObj);
     })
 }
 
-function handleFormCardSubmit(formDataObject) {           //АПИ №6 создание новой карточки на странице
+function handleFormCardSubmit(formDataObject) {
   popupAddCards.setLoader();
   api.createUserCard(formDataObject)
     .then((dataFromServer) => {
       const newCards = createCards(dataFromServer);
       defaultCards.addItem(newCards, false);
+      popupAddCards.close();
     })
-    .catch()
+    .catch((err) => {
+      console.log('Ошибка', err);
+    })
     .finally(() => {
-      popupAddCards.returnTextValueBtn('card');
+      popupAddCards.returnTextValueBtn(formDataObject);
     })
 }
 
 function handleFormProfileSubmit(dataObj) {
   popupProfileForm.setLoader();
-  //api.getUserInfoFromServer()
   api.sendUserInfoToServer(dataObj)
     .then((res) => {
       userInfo.setUserInfo(res);
+      popupProfileForm.close();
+    })
+    .catch((err) => {
+      console.log('Ошибка', err);
     })
     .finally(() => {
-      popupProfileForm.returnTextValueBtn('profile');
+      popupProfileForm.returnTextValueBtn(dataObj);
     });
 }
 
@@ -173,4 +156,3 @@ formPlaceValidation.enableValidation();
 
 const formAvatarValidation = new FormValidator(configForm, formAvatar);
 formAvatarValidation.enableValidation();
-

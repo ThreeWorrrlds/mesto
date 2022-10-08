@@ -29,7 +29,7 @@ export class Card {
     this._photo.setAttribute('alt', `изображение ${this._name}`);
     this._element.querySelector('.card__place-name').textContent = this._name;
     this._likesCounter.textContent = this._likes;
-    if (this._userId !== "4a161389e69e9824646dd7f1") {
+    if (this._userId !== this._myId) {
       this._cardBtnTrash.remove();
     }
     this._setEventListeners();

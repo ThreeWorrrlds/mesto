@@ -21,7 +21,7 @@ const cardBtnTrash = document.querySelector('.template-card').content.querySelec
 
 const buttonAddCard = document.querySelector('.profile__button-add'); //кнопка открытия поп-ап место
 
-const myId = '4a161389e69e9824646dd7f1';
+let myIdUser = '';
 
 const configApi = {
   urlCards: 'https://mesto.nomoreparties.co/v1/cohort-51/cards',
@@ -62,4 +62,4 @@ export { avatarInput }; //to index.js
 export { buttonAvatar };//to index.js
 export { avatarImg }; //to index.js
 export { configApi }; //to index.js
-export { myId }; //to index.js
+export { myIdUser }; //to index.js

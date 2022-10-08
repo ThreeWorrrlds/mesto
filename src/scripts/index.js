@@ -17,12 +17,14 @@ import {
   buttonAddCard,
   formAvatar,
   buttonAvatar,
-  configApi,
-  myId
+  configApi
 } from './utils/constants.js';
 
+let myIdUser;
+
 /*    создание и удаление карточек    */
-function createCards(data) {
+
+function newCard(data, myId) {
   const card = new Card(data, {
     handleCardClick: ({ img, name }) => {
       popupWithImage.open({ img, name });
@@ -39,6 +41,11 @@ function createCards(data) {
         .then((res) => { instance.changeLikeState(res); })
     }
   }, '#card', myId);
+  return card;
+}
+
+function createCards(data) {
+  const card = newCard(data, myIdUser);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -58,6 +65,7 @@ const userInfo = new UserInfo({ profileName: '.profile__name', profileDescriptio
 Promise.all([api.getUserInfoFromServer(), api.getAllCards()])
   .then(([dataUser, dataCards]) => {
     userInfo.setUserInfo(dataUser);
+    myIdUser = userInfo.getUserId(dataUser);
     defaultCards.renderItems(dataCards);
   })
   .catch((err) => {

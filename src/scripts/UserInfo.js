@@ -3,6 +3,7 @@ export class UserInfo {
     this._profileName = document.querySelector(profileName);
     this._profileDescription = document.querySelector(profileDescription);
     this._avatar = document.querySelector(avatarElement);
+    this._myId = null;
   }
 
   getUserInfo() {
@@ -18,7 +19,17 @@ export class UserInfo {
     this._profileDescription.textContent = res.about;
     this._avatar.src = res.avatar;
   }
+
+  getUserId(res) {
+    return res._id;
+  }
+
+
+
+
 }
+
+
 
 
 

@@ -65,7 +65,7 @@ const userInfo = new UserInfo({ profileName: '.profile__name', profileDescriptio
 Promise.all([api.getUserInfoFromServer(), api.getAllCards()])
   .then(([dataUser, dataCards]) => {
     userInfo.setUserInfo(dataUser);
-    myIdUser = userInfo.getUserId(dataUser);
+    myIdUser = dataUser._id;
     defaultCards.renderItems(dataCards);
   })
   .catch((err) => {

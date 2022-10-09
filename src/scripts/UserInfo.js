@@ -20,13 +20,6 @@ export class UserInfo {
     this._avatar.src = res.avatar;
   }
 
-  getUserId(res) {
-    return res._id;
-  }
-
-
-
-
 }
 
 
